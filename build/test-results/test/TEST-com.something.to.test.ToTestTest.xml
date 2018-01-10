@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.something.to.test.ToTestTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-01-10T15:11:49" hostname="WS00065" time="0.014">
+<testsuite name="com.something.to.test.ToTestTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-10T16:31:26" hostname="WS00065" time="0.027">
   <properties/>
-  <testcase name="stringResolverAnnotTest" classname="com.something.to.test.ToTestTest" time="0.01"/>
-  <testcase name="stringResolverTest" classname="com.something.to.test.ToTestTest" time="0.0"/>
+  <testcase name="stringResolverAnnotTest" classname="com.something.to.test.ToTestTest" time="0.011"/>
+  <testcase name="stringResolverTest" classname="com.something.to.test.ToTestTest" time="0.001"/>
+  <testcase name="mockLoggerTest" classname="com.something.to.test.ToTestTest" time="0.01"/>
   <testcase name="spyLoggerTest" classname="com.something.to.test.ToTestTest" time="0.003"/>
   <system-out><![CDATA[Solving for aaaBBBB
-Start: 3	Length: 4
+Solving for aaaBBBB
+LOGGER:	Start: 3	Length: 4
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
