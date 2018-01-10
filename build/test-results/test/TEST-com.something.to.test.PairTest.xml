@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.something.to.test.PairTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-10T15:11:49" hostname="WS00065" time="0.004">
+  <properties/>
+  <testcase name="equalsTestNotEqualLength" classname="com.something.to.test.PairTest" time="0.002"/>
+  <testcase name="equalsTestEquals" classname="com.something.to.test.PairTest" time="0.0"/>
+  <testcase name="equalsTestEqualsMethod" classname="com.something.to.test.PairTest" time="0.002"/>
+  <testcase name="equalsTestNotEqualStart" classname="com.something.to.test.PairTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
