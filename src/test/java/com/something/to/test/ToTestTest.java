@@ -1,20 +1,14 @@
 package com.something.to.test;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Date;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ToTestTest {
     private StringResolver stRes = mock(StringResolver.class);
     // Same
@@ -27,7 +21,7 @@ public class ToTestTest {
     @Spy
     private Logger lgSpy;
 //    Same as @RunWith(MockitoJUnitRunner.class)
-    @Before
+    @BeforeEach
     public void setUp(){
         MockitoAnnotations.initMocks(this);
     }
