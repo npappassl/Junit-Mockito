@@ -12,6 +12,8 @@ repositories {
 
 dependencies {
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.2'
+//    https://github.com/junit-team/junit5-samples/issues/45
+    testCompileOnly 'org.apiguardian:apiguardian-api:1.0.0'
     testRuntime 'org.junit.platform:junit-platform-launcher:1.0.2'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.0.2'
     testRuntime 'org.junit.vintage:junit-vintage-engine:4.12.2'
