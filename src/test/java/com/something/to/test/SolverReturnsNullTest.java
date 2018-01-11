@@ -1,70 +1,29 @@
 package com.something.to.test;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SolverReturnsNullTest {
-    Solver s;
+    @TestFactory
+    public Stream<DynamicTest> uniformStringDynamicTests() {
+        List<String> inPhrases = new ArrayList<>(Arrays.asList(
+                "aaabbbb", "", "a",
+                "aa", "ab", "acvsasvasdddddbasbsaasddbabdbbbbadbadb"));
+        List<Pair> expected = new ArrayList<>(Arrays.asList(
+                new Pair(3, 4), null, new Pair(0, 1),
+                new Pair(0, 2), new Pair(0, 1), new Pair(9, 5)));
 
-    @BeforeEach
-    public void setUp() {
-        s = new SolverReturnsNull();
+        return inPhrases.stream().map(phr -> DynamicTest.dynamicTest("Test find uniform string in: " + phr, () -> {
+                int i = inPhrases.indexOf(phr);
+                ToTest t = new ToTest(phr, new SolverReturnsNull());
+                assertEquals(expected.get(i), t.findUniformString());
+        }));
     }
-
-    @Test
-    public void findUniformStringTestSimple() {
-        ToTest t = new ToTest("aaabbbb", s);
-        Pair expected = new Pair(3, 4);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestEmpty() {
-        ToTest t = new ToTest("", s);
-        Pair expected = null;
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestSingleChar() {
-        ToTest t = new ToTest("a", s);
-        Pair expected = new Pair(0, 1);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestTwoChar() {
-        ToTest t = new ToTest("aa", s);
-        Pair expected = new Pair(0, 2);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestTwoDistinctsChars() {
-        ToTest t = new ToTest("ab", s);
-        Pair expected = new Pair(0, 1);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestLong() {
-        ToTest t = new ToTest("acvsasvasdddddbasbsaasddbabdbbbbadbadb", s);
-        Pair expected = new Pair(9, 5);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
 }
