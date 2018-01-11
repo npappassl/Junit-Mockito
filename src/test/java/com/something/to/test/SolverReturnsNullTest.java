@@ -1,70 +1,37 @@
 package com.something.to.test;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Simple solver should find the starting index and length of the longest uniform String (returns null for empty String)")
 public class SolverReturnsNullTest {
-    Solver s;
-
-    @BeforeEach
-    public void setUp() {
-        s = new SolverReturnsNull();
+    static class MyArgumentsProvider implements ArgumentsProvider {
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+            return Stream.of(
+                    Arguments.of("aaabbbb", new Pair(3, 4)),
+                    Arguments.of("", null),
+                    Arguments.of("a", new Pair(0, 1)),
+                    Arguments.of("aa", new Pair(0, 2)),
+                    Arguments.of("ab", new Pair(0, 1)),
+                    Arguments.of("acvsasvasdddddbasbsaasddbabdbbbbadbadb", new Pair(9, 5))
+            );
+        }
     }
+    @ParameterizedTest
+    @ArgumentsSource(MyArgumentsProvider.class)
+    public void findUniformStringTestSimple(String input, Pair expectedOut) {
+        SolverReturnsNull s = new SolverReturnsNull();
+        ToTest t = new ToTest(input, s);
 
-    @Test
-    public void findUniformStringTestSimple() {
-        ToTest t = new ToTest("aaabbbb", s);
-        Pair expected = new Pair(3, 4);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
+        assertEquals(expectedOut, t.findUniformString());
     }
-
-    @Test
-    public void findUniformStringTestEmpty() {
-        ToTest t = new ToTest("", s);
-        Pair expected = null;
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestSingleChar() {
-        ToTest t = new ToTest("a", s);
-        Pair expected = new Pair(0, 1);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestTwoChar() {
-        ToTest t = new ToTest("aa", s);
-        Pair expected = new Pair(0, 2);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestTwoDistinctsChars() {
-        ToTest t = new ToTest("ab", s);
-        Pair expected = new Pair(0, 1);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void findUniformStringTestLong() {
-        ToTest t = new ToTest("acvsasvasdddddbasbsaasddbabdbbbbadbadb", s);
-        Pair expected = new Pair(9, 5);
-        Pair actual = t.findUniformString();
-
-        assertEquals(expected, actual);
-    }
-
 }
