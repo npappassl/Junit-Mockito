@@ -24,7 +24,7 @@ public class SimpleSolverTest {
 
         s = new SimpleSolver();
     }
-    @Parameters
+    @Parameters(name = "{index} Find a uniform string in {0}")
     public static Collection<Object[]> arguments(){
         return Arrays.asList(new Object[][]{
                 {"aaabbbb", 3 , 4},
